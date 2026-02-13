@@ -20,11 +20,7 @@
       "type": "http",
       "url": "https://microsoft365.mcp.claude.com/mcp"
     },
-    "snowflake": {
-      "type": "http",
-      "url": ""
-    },
-    "bigquery": {
+"bigquery": {
       "type": "http",
       "url": "https://bigquery.googleapis.com/mcp"
     }
