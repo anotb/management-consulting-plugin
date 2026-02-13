@@ -6,7 +6,7 @@
 
 ## Why this exists
 
-Consulting runs on structured thinking. Hypothesis trees, framework applications, governance cadences: these are repeatable patterns, not creative leaps. This plugin encodes those patterns so you spend less time on scaffolding and more time on the actual thinking.
+Consulting runs on structured thinking. Hypothesis trees, framework applications, governance cadences: the scaffolding is the same every time. This plugin encodes that scaffolding so you can focus on the parts that actually require judgment.
 
 It covers seven phases of engagement work:
 
@@ -39,7 +39,7 @@ git clone https://github.com/anotb/management-consulting-plugin.git .skills/mana
 
 ## Commands
 
-Slash commands for explicit workflows. Each one walks you through a structured process: ask questions, gather context, produce output.
+Slash commands for explicit workflows. Each one walks you through a structured process and produces a deliverable at the end.
 
 ### Business Development
 
@@ -111,7 +111,7 @@ Slash commands for explicit workflows. Each one walks you through a structured p
 
 ## Skills
 
-Skills are domain knowledge the agent uses automatically when relevant. You don't invoke these; they activate in context.
+Skills are domain knowledge the agent draws on automatically when the conversation calls for it.
 
 | Skill | What it knows |
 |---|---|
@@ -127,7 +127,7 @@ Skills are domain knowledge the agent uses automatically when relevant. You don'
 
 ## Example Workflows
 
-Commands are designed to chain together. Here's how they map to common engagement types.
+Commands chain together. A few common sequences:
 
 ### Strategy engagement
 
@@ -167,17 +167,17 @@ Analyze the opportunity, then:
 /proposal-develop → /sow-create → /pitch-deck → /pricing-model
 ```
 
-## Works Standalone, Better With Tools
+## MCP Integrations
 
-Everything works with just web search and what you tell the agent. Connect MCP servers and commands get access to real data.
+Every command works out of the box with web search and whatever context you provide. Connect MCP servers to give commands access to real data.
 
-| Capability | Standalone | With MCP integrations |
+| Capability | Without MCP | With MCP |
 |---|---|---|
 | Analysis | Web search + your input | Data warehouse, BI dashboards |
-| Financial models | You describe assumptions | Excel files, financial databases |
-| Presentations | You describe the content | PowerPoint, Google Slides |
+| Financial models | Describe your assumptions | Excel files, financial databases |
+| Presentations | Describe what you need | PowerPoint, Google Slides |
 | Market research | Web search | Industry databases, CRM data |
-| Project management | You describe status | Jira, Confluence, project tools |
+| Project management | Paste your status | Jira, Confluence, project tools |
 
 See [CONNECTORS.md](CONNECTORS.md) for integration details.
 
