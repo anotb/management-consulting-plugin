@@ -24,6 +24,12 @@ Every command works standalone with web search and your own context. Connect MCP
 
 ## Install
 
+### Cowork
+
+1. Open the **Plugins** panel
+2. Click the dropdown and select **Add marketplace from GitHub**
+3. Enter `anotb/management-consulting-plugin`
+
 ### Claude Code
 
 ```bash
