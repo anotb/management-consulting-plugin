@@ -4,6 +4,8 @@
 
 > Built on the [Agent Skills](https://agentskills.io) open standard. Works with Claude Code, Cursor, Windsurf, Cline, GitHub Copilot, Gemini CLI, and [20+ other agents](https://agentskills.io).
 
+Part of [unsol.dev](https://unsol.dev)
+
 ## Why this exists
 
 Consulting runs on structured thinking. Hypothesis trees, framework applications, governance cadences: the scaffolding is the same every time. This plugin encodes that scaffolding so you can focus on the parts that actually require judgment.

@@ -1,5 +1,8 @@
 {
   "name": "management-consulting-plugin",
+  "owner": {
+    "name": "Anot"
+  },
   "plugins": [
     {
       "name": "management-consulting",
