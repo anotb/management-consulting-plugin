@@ -34,7 +34,8 @@ fi
 
 rm -rf "$STAGE"
 mkdir -p "$REFS"
-cp "$DISPATCHER" "$STAGE/SKILL.md"
+# Normalize CRLF checkouts so Windows/WSL builds match Linux builds.
+awk '{ sub(/\r$/, ""); print }' "$DISPATCHER" > "$STAGE/SKILL.md"
 
 generated=()
 copied=()
@@ -52,13 +53,13 @@ for dir in "$SRC"/*/; do
     continue
   fi
   # Strip only the first frontmatter block (between the first two --- lines).
-  # Preserves --- section separators inside the body.
-  awk 'n<2 { if(/^---$/) n++; next } 1' "$src" > "$REFS/$name.md"
+  # Normalize CRLF while preserving --- section separators inside the body.
+  awk '{ line=$0; sub(/\r$/, "", line); if(n<2) { if(line=="---") n++; next } print line }' "$src" > "$REFS/$name.md"
   generated+=("$name")
   if [[ -d "$dir/references" ]]; then
     for sub in "$dir/references"/*.md; do
       [[ -e "$sub" ]] || continue
-      cp "$sub" "$REFS/"
+      awk '{ sub(/\r$/, ""); print }' "$sub" > "$REFS/$(basename "$sub")"
       copied+=("$(basename "$sub")")
     done
   fi
