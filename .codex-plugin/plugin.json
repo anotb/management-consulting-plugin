@@ -1,0 +1,45 @@
+{
+  "name": "management-consulting",
+  "version": "2.1.0",
+  "description": "Structure business problems, build recommendations, and support consulting work from proposal through closeout.",
+  "author": {
+    "name": "Rahil Banthia",
+    "url": "https://unsol.dev/"
+  },
+  "homepage": "https://github.com/anotb/management-consulting-plugin#readme",
+  "repository": "https://github.com/anotb/management-consulting-plugin",
+  "license": "MIT",
+  "keywords": [
+    "management-consulting",
+    "strategy",
+    "due-diligence",
+    "financial-modeling",
+    "implementation",
+    "change-management",
+    "executive-communications"
+  ],
+  "skills": "./skills/",
+  "interface": {
+    "displayName": "Management Consulting",
+    "shortDescription": "Consulting analysis and plans",
+    "longDescription": "Structure ambiguous business problems, build financial cases and proposals, plan implementation, conduct due diligence, manage change, and produce executive-ready deliverables. The package instructs the model to separate evidence from assumptions, flag missing inputs, and avoid unsupported facts, invented benchmarks, and generic filler.",
+    "developerName": "Rahil Banthia",
+    "category": "Business & Operations",
+    "capabilities": [
+      "Analyze",
+      "Plan",
+      "Write"
+    ],
+    "websiteURL": "https://github.com/anotb/management-consulting-plugin",
+    "privacyPolicyURL": "https://github.com/anotb/management-consulting-plugin/blob/main/PRIVACY.md",
+    "termsOfServiceURL": "https://github.com/anotb/management-consulting-plugin/blob/main/TERMS.md",
+    "defaultPrompt": [
+      "Structure this business problem and identify the analyses needed to reach a decision.",
+      "Turn this recommendation into an implementation plan with owners, milestones, and risks.",
+      "Build an executive-ready storyline from these findings and recommendations."
+    ],
+    "brandColor": "#0E7490",
+    "composerIcon": "./assets/management-consulting.svg",
+    "logo": "./assets/management-consulting.svg"
+  }
+}

@@ -1,14 +1,14 @@
 # Management Consulting Plugin
 
-Skills for the full consulting engagement lifecycle, from problem structuring through implementation and close-out.
+Skills for the consulting engagement lifecycle, from problem structuring through implementation and closeout.
 
-> Built on the [Agent Skills](https://agentskills.io) open standard. Works with Claude Code, Cowork, Codex, Gemini CLI, and [other compatible agents](https://agentskills.io).
+> Packaged for OpenAI's Plugin Directory and the [Agent Skills](https://agentskills.io) open standard. The same source works with ChatGPT, Codex, Claude Code, Cowork, Gemini CLI, and [other compatible agents](https://agentskills.io).
 
 Part of [unsol.dev](https://unsol.dev)
 
 ## Why this exists
 
-The mechanics of consulting follow the same patterns every engagement. Scoping, stakeholder alignment, analysis, strategy, delivery, commercials. This plugin encodes that harness so you can focus on the parts that actually require judgment.
+Consulting engagements repeat many of the same mechanics: scoping, stakeholder alignment, analysis, strategy, delivery, and commercials. These skills capture that structure so you can focus on client context and judgment.
 
 ## Skills
 
@@ -33,13 +33,17 @@ The mechanics of consulting follow the same patterns every engagement. Scoping, 
 
 ## Install
 
-### Skills CLI (recommended, works across agents)
+### ChatGPT and Codex
+
+In ChatGPT or Codex, open **Plugins** and search for **Management Consulting**. If it is not listed, use the cross-agent installer below.
+
+### Skills CLI
 
 ```bash
 npx skills add anotb/management-consulting-plugin
 ```
 
-One install for Claude Code, Codex, Cursor, Gemini CLI, and [40+ other agents](https://skills.sh).
+The same install works across Claude Code, Codex, Cursor, Gemini CLI, and [other supported agents](https://skills.sh).
 
 ### Claude Desktop
 
@@ -70,7 +74,7 @@ claude plugin install management-consulting@anotb-management-consulting-plugin
 
 Download the repo as a ZIP, then in Cowork go to Customize > Browse plugins > click `+` and upload. (Organization admins can sync directly from GitHub via Settings > Plugins > Add plugin.)
 
-### Codex
+### Codex without the directory
 
 Codex auto-discovers skills under `.agents/skills/`. The cross-agent installer places them there for you:
 
@@ -92,7 +96,7 @@ Clone into `.agents/skills/` (the cross-platform standard) or the agent's native
 
 ## Usage
 
-Skills activate automatically when your conversation touches consulting topics. No slash commands needed. Just describe the work ("structure the due diligence for this acquisition") and the relevant skill loads.
+Skills activate automatically when a request matches a consulting workflow. No slash command is required. Describe the work, such as "structure the due diligence for this acquisition," and the relevant skill loads.
 
 You can also invoke a skill directly in Claude Code:
 
@@ -101,7 +105,7 @@ You can also invoke a skill directly in Claude Code:
 /management-consulting:engagement-pricing
 ```
 
-For best results, use [plan mode](https://code.claude.com/docs/en/common-workflows#plan-before-coding) (`shift+tab` twice in Claude Code). This makes Claude ask clarifying questions (your data, client context, constraints) before building anything, instead of assuming.
+In Claude Code, [plan mode](https://code.claude.com/docs/en/common-workflows#plan-before-coding) (`shift+tab` twice) can surface missing data, client context, and constraints before work begins.
 
 ## Heads up
 

@@ -1,2 +1,4 @@
 .claude/
+.codex/
 dist/build/
+dist/management-consulting-openai.zip

@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Management Consulting</title>
+  <desc id="desc">A four-quadrant strategy matrix with the upper-right quadrant highlighted.</desc>
+  <rect width="512" height="512" rx="112" fill="#0E7490"/>
+  <path d="M112 256h288M256 112v288" fill="none" stroke="#FFFFFF" stroke-width="28" stroke-linecap="round"/>
+  <rect x="284" y="112" width="116" height="116" rx="24" fill="#A5F3FC"/>
+</svg>
