@@ -1,28 +1,29 @@
-# Regulated Industry Closeout Requirements
+# Regulated-industry closeout
 
-Sector-specific closeout obligations that go beyond standard practice. Failing to address these creates compliance exposure that outlasts the engagement by years. Confirm the applicable requirements with the client's compliance function; treat regulatory citations here as pointers to verify against current rules, not as legal advice.
+Use this reference to identify the applicable source and questions, not to infer obligations from an industry label. Confirm jurisdiction, entity, data and record type, contract, regulatory applicability, retention schedule, litigation or regulatory holds, and the responsible client function. Draft a disposition plan while material legal or policy questions remain open; do not represent it as approved or execute deletion without authority.
 
-## Financial Services
+Sources below were checked September 5, 2026. Verify current text and applicability at the time of use, especially for a later engagement. If current-source tools are unavailable, name the unresolved verification instead of presenting a remembered retention period as current law.
 
-- **Regulatory documentation:** Ensure compliance-related deliverables meet the relevant regulator's standards (OCC, FCA, APRA, and so on) and are archived per retention requirements (commonly 7+ years).
-- **Audit trail:** Document decisions, approvals, and changes with timestamps. Regulators may review these years later.
-- **Model risk management:** If the engagement produced quantitative models, confirm SR 11-7 / SS1/23 documentation is complete: model inventory, validation reports, limitation disclosures.
-- **Data handling:** Confirm all client data is returned or destroyed per the data handling agreement. Obtain written confirmation.
+## Financial services
 
-## Healthcare
+For US banking model-risk work, [Federal Reserve SR 26-2](https://www.federalreserve.gov/supervisionreg/srletters/SR2602.htm), issued April 17, 2026, supersedes SR 11-7 and SR 21-8. Check its applicability and the relevant regulator's guidance rather than assuming every quantitative model or institution is covered identically. Transfer the model inventory, version, data and assumptions, validation evidence, limitations, operating controls, and ownership relevant to the engagement.
 
-- **HIPAA / PHI:** Verify all protected health information is returned or securely destroyed. Document the chain of custody.
-- **Clinical documentation:** Deliverables affecting clinical workflows must be validated against relevant standards (Joint Commission, CMS).
-- **BAA closure:** If a Business Associate Agreement was in place, formally close it and confirm data disposition.
+For UK bank model-risk work, consult the [Bank of England/PRA SS1/23 source page](https://www.bankofengland.co.uk/prudential-regulation/publication/2023/may/model-risk-management-principles-for-banks-ss) and confirm the applicable version, effective provisions, and institutional scope. Other jurisdictions require their own regulator and policy sources.
 
-## Government / Public Sector
+Archive decision, change, and approval evidence under the client's applicable record schedule. There is no universal seven-year rule for every financial-services engagement artifact.
 
-- **Contract closeout:** Follow FAR Part 4.804 (US federal) or the equivalent procurement regulation. Government contracts carry specific closeout timelines and documentation requirements.
-- **Security clearance:** Deactivate or transfer facility and personnel clearances properly.
-- **FOIA considerations:** Assume documentation may be subject to freedom of information requests. Flag anything that should be marked proprietary or exempt.
-- **Audit readiness:** Government auditors (GAO, IG) may review files years after completion. Archive accordingly.
+## Healthcare and protected information
 
-## Cross-Industry
+For US HIPAA business-associate arrangements, consult [HHS business-associate contract provisions](https://www.hhs.gov/hipaa/for-professionals/covered-entities/sample-business-associate-agreement-provisions/index.html). Return or destruction on termination is subject to the applicable agreement and feasibility provisions; information that must remain may carry continuing restrictions and safeguards. Do not assume ending the engagement eliminates obligations for retained information or subcontractors.
 
-- **Data retention:** Know the retention period before archiving. Financial services and healthcare often require 7-10 years; some government contracts require longer. Confirm the exact period with compliance rather than assuming.
-- **Third-party attestations:** If the engagement involved SOC 2, ISO 27001, or similar certifications, document the findings and hand them to the relevant compliance team.
+Identify the actual PHI, custodians, copies, transfer recipient, permitted retention, disposition method, confirmation evidence, and ongoing protections. Coordinate with the client's privacy/compliance owner. Clinical workflow acceptance and records retention depend on the specific activity and authority, not a generic healthcare checklist.
+
+## Government and public sector
+
+For US federal contract closeout, consult [FAR 4.804](https://www.acquisition.gov/far/4.804) and the relevant subsections, agency rules, contract clauses, and contracting-officer authority. Confirm which closeout actions belong to the client or contracting authority and which the consultant must support. Do not treat completion of work as automatic administrative contract closure.
+
+Preserve relevant audit records, ownership, security obligations, and disclosure markings under the applicable agreement and law. Other governments have different procurement and information-access regimes. A confidentiality label alone does not establish an exemption from disclosure.
+
+## Disposition decision
+
+Record the record/data category, controlling source and applicability, retention trigger and period if verified, holds, owner, approved disposition, and evidence of completion. Resolve conflicts between deletion requests, retention obligations, contracts, and holds with the authorized function. Transfer responsibility for outstanding attestations, audit responses, and continuing safeguards before resource release.

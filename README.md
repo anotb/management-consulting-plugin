@@ -14,7 +14,7 @@ Consulting engagements repeat many of the same mechanics: scoping, stakeholder a
 
 | Skill | What it covers |
 |---|---|
-| `strategic-analysis` | Problem structuring, hypothesis development, framework application, cross-framework synthesis |
+| `strategic-analysis` | Decision framing, causal diagnosis, competing hypotheses, market and competitive analysis |
 | `financial-modeling` | Business cases, cost-benefit analysis, ROI/NPV/IRR, sensitivity analysis, scenario modeling |
 | `proposal-development` | RFP analysis, proposal writing, SOW creation, pitch decks, oral defense |
 | `engagement-setup` | Kickoff design, discovery planning, stakeholder mapping, the first two weeks |
@@ -25,7 +25,7 @@ Consulting engagements repeat many of the same mechanics: scoping, stakeholder a
 | `process-excellence` | DMAIC, value stream mapping, root cause analysis, control plans |
 | `org-design` | Operating models, structure design, role frameworks, transition planning |
 | `project-governance` | Steering committees, stage gates, RACI, risk management, status reporting |
-| `client-deliverables` | Presentations, reports, storylining, slide design, PPTX generation patterns |
+| `client-deliverables` | Executive reports, visual storytelling, editable exhibits, slide design, and artifact review |
 | `workshop-facilitation` | Strategy workshops, facilitation design, participant dynamics |
 | `thought-leadership` | POVs, white papers, case studies, thesis development |
 | `project-closeout` | Handover, knowledge transfer, lessons learned, benefits tracking |
@@ -106,6 +106,28 @@ You can also invoke a skill directly in Claude Code:
 ```
 
 In Claude Code, [plan mode](https://code.claude.com/docs/en/common-workflows#plan-before-coding) (`shift+tab` twice) can surface missing data, client context, and constraints before work begins.
+
+## Working with the skills
+
+Start with the decision or artifact you need, include the evidence you have, and state the audience and constraints. The skills produce useful drafts with explicit gaps, distinguish observed results from forecasts, and connect recommendations to evidence and decision thresholds. They preserve client templates and agreed scope. Detailed methods load only when relevant. Output length follows the prompt, audience, and task; the skills impose no fixed word, paragraph, framework, or slide counts. Presentation guidance emphasizes compositions that fit the evidence, a coherent visual direction, and review of both individual slides and the whole deck.
+
+All 16 skill names and installation paths remain stable in 2.2.0. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
+
+## Build and verify
+
+```bash
+# Claude Desktop: one dispatcher SKILL.md with all topic resources
+bash build.sh
+
+# OpenAI: both manifests, all standalone skills and their resources
+pwsh -NoProfile -File build-openai.ps1
+
+# Deterministic packaging and exhibit checks (Python standard library; Node 18+)
+python3 -m unittest discover -s tests -v
+node --test tests/test_consulting_charts.cjs
+```
+
+The OpenAI archive is written to `dist/management-consulting-openai.zip`. Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
 
 ## Heads up
 

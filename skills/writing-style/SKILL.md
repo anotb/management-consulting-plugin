@@ -1,36 +1,29 @@
 ---
 name: writing-style
-description: Consulting writing standards that enforce tone, sentence discipline, depth calibration, and content integrity across every deliverable. Use when producing any consulting output (analysis, recommendation, report, deck, memo, or client-facing content) to make it read like a senior consultant wrote it rather than an AI imitating one.
+description: "Write and edit consulting analysis, recommendations, reports, decks, and client communications with direct language, proportional detail, and explicit evidence. Use to adapt a consulting deliverable to its audience and remove generic or unsupported claims."
 license: MIT
 metadata:
   category: standards
-  version: "2.1.0"
+  version: "2.2.0"
   author: Anot
 ---
 
 # Writing Style
 
-Write like a senior consultant, not like an AI describing what a senior consultant would write. These standards apply to every consulting skill in this plugin. When another skill is active, apply these rules to its output.
+Follow the user's requested voice, audience, format, and length. These are defaults for consulting work, not a requirement to imitate a role or overwrite an approved style.
 
-## Voice and mechanics
+Lead with the answer or decision the reader needs. Explain the evidence, consequence, trade-off, and action in the detail needed to assess them. Spend more words where the reasoning is difficult; omit routine sections that add no decision value.
 
-- No em-dashes (the `—` character). Use parentheses, periods, or colons instead. This is the single most common AI tell. A dash-joined clause almost always reads better as two sentences.
-- Vary sentence length. Short sentences land points. Longer ones carry nuance and qualification.
-- State opinions directly. "This approach failed because the incentives never changed" beats "It may be worth considering that the approach could have potentially faced challenges."
-- No "not just X, but Y" or "not only X but Y" constructions. Say what it is.
-- Quantify when possible. "Revenue dropped 12%" beats "revenue experienced a significant decline."
-- When uncertain, say so plainly. "We don't have enough data to call this yet" is a complete, honest answer.
-- Cut AI filler on sight: "it's worth noting," "it should be mentioned," "let's delve into," "in today's rapidly evolving," "navigating the," "when it comes to," "at the end of the day."
-- Prefer the active voice and concrete nouns. Name the driver, the number, the decision.
+Use concrete nouns, active verbs, and natural sentence variation. Define technical terms when the audience needs it. Remove ceremonial openings, inflated adjectives, and stock phrases such as “unlock value” or “in today's rapidly evolving landscape.” Replace them with the specific outcome or mechanism. Use periods, commas, or parentheses instead of em dashes in original prose; preserve quotations and supplied style when required.
 
-## Depth calibration
+Remove invented rhetorical contrasts, empty praise, question-and-answer headings, and conclusions that repeat the opening. A sentence should add a finding, explanation, trade-off, or action. Do not pad a short request into a standard consulting framework.
 
-Prioritize depth on the 2-3 sections where the real insight lives. Go deep there and sketch the rest. Equal airtime across every section is itself a tell: it signals the writer had no point of view about what mattered. If the problem clearly sits in one area, spend the words there.
+Use paragraphs for connected reasoning, lists for parallel items, and tables for comparison. Numeric cells can contain a number and unit. Do not enforce a sentence count in every cell, a fixed number of arguments, or a uniform section length. A title should help navigation or state a supported takeaway according to the artifact's purpose.
 
-When presenting risk scores, timeline estimates, or probability assessments without underlying data, label them as directional estimates so the reader knows what is judgment and what is measured.
+State supported judgments directly. Calibrate certainty to the evidence rather than stripping all qualifications. Distinguish facts, sourced claims, forecasts, estimates, and opinion. Quantify when defensible, with units, periods, and a basis. Do not turn an unknown into a directional number just to sound specific.
 
-## Content integrity
+Never invent experience, quotations, research, benchmarks, or sources. “Organizations that do X tend to see Y” still asserts an empirical pattern and needs support. When evidence is absent, explain the mechanism as a hypothesis, mark an example as fictional, or state the missing input. Preserve material contradictions and limitations near the claim.
 
-- Ask for information rather than fabricating it. When illustrative numbers are needed to show a method, label them as examples and flag them for validation.
-- Present benchmarks as illustrative, not authoritative. Note the source and the context that makes them comparable (or not).
-- Never fabricate engagement experience or specific dollar figures. Use conditional framing ("organizations that do X tend to see Y") unless the user supplies actual firm data.
+Put a material caveat beside the affected claim once, with its decision consequence. Keep drafting and validation notes outside client-facing prose when the reader does not need them. Evidence discipline should make the answer usable, not turn every deliverable into an audit of its own limitations.
+
+For a proposed action, identify who would own it and what happens next when the task calls for execution detail. Label suggested owners and dates as proposals. Finish when the requested artifact is complete; avoid adding a menu of unrelated next services.
