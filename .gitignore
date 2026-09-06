@@ -2,3 +2,9 @@
 .codex/
 dist/build/
 dist/management-consulting-openai.zip
+
+# Local review notes and evaluation artifacts
+/reviews/
+
+# Python test caches
+__pycache__/

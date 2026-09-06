@@ -10,7 +10,7 @@
   "plugins": [
     {
       "name": "management-consulting",
-      "version": "2.1.0",
+      "version": "2.2.0",
       "source": {
         "source": "url",
         "url": "https://github.com/anotb/management-consulting-plugin.git"

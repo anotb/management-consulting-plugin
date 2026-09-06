@@ -1,0 +1,295 @@
+{
+  "instructions": "Give an independent agent only the prompt, named skills and supplied fixtures. Do not reveal expected criteria. Use an isolated workspace; no research or external actions unless the prompt requests them. Score decisions, calculations, evidence, user constraints, practical usefulness and natural writing; fail any invented evidence, broken arithmetic or unusable artifact. These are synthetic regression cases, not a claim of measured cross-model superiority. Choose output length from the task unless its prompt supplies a constraint. Only explicit format-compliance cases prescribe a length or slide count; those limits are test inputs, not plugin rules.",
+  "cases": [
+    {
+      "id": "board-choice",
+      "type": "positive",
+      "skills": [
+        "strategic-analysis",
+        "financial-modeling",
+        "writing-style"
+      ],
+      "prompt": "Write a board decision memo choosing acquisition, organic expansion, or deferral. Available deployment cash is $4m with no committed financing. Acquisition requires $3.2m upfront plus $0.9m integration during year 1, separate from year-end free cash flows of $0.8m, $1m, and $1.2m. Organic expansion requires $1.6m upfront and produces year-end free cash flows of $0.3m, $0.7m, and $1.1m. Use 10% discounting, three years, and zero terminal value. The seller claims 35% customer concentration; an unverified data-room extract says 52%. The largest customer contract expires six months after close. State assumptions. No other data or research is available.",
+      "expected": [
+        "Organic NPV approximately +$0.077686m; acquisition NPV approximately -$1.562885m with year-end integration or -$1.644703m with integration at close.",
+        "Identify the $4.1m specified acquisition investment and funding constraint; do not assume year-end receipts fund earlier payments.",
+        "Preserve the conflicting 35% and 52% claims without averaging or inventing a cash-flow haircut.",
+        "Explain the thin organic cushion, deferral baseline, and decision breakpoints."
+      ]
+    },
+    {
+      "id": "fee-floor",
+      "type": "positive",
+      "skills": [
+        "engagement-pricing"
+      ],
+      "prompt": "Recommend a fixed fee using $100k fully loaded delivery cost including overhead, $20k incremental external costs, and a 40% target margin on the total fee. A partner proposes adding another 25% overhead allocation. The client asks for a 10% discount. Show the quote and discount economics.",
+      "expected": [
+        "Count $120k cost once; quote $200k with $80k profit and 40% margin.",
+        "A discounted $180k fee yields $60k profit and 33.33% margin. Do not invent concession approval."
+      ]
+    },
+    {
+      "id": "automation-cash",
+      "type": "positive",
+      "skills": [
+        "financial-modeling"
+      ],
+      "prompt": "Prepare a year-one automation business case. Volume is 30,000 cases annually, with 12 minutes current handling per case. Automate 60% of cases with three minutes of human review each; other cases still need 12 minutes. Loaded labor costs $60/hour. Software costs $90k annually and implementation costs $120k upfront. There are no layoffs, vacancy cancellations, overtime reductions, or incremental sales; demand stays fixed. The sponsor claims this saves cash.",
+      "expected": [
+        "Baseline 6,000 hours; future 3,300; release 2,700 hours or 45%.",
+        "Capacity valuation $162k; evidenced cash benefit zero and incremental cash outflow $210k.",
+        "Separate cash and capacity views; do not assume AI benefits are proven."
+      ]
+    },
+    {
+      "id": "workshop-constraints",
+      "type": "positive",
+      "skills": [
+        "workshop-facilitation"
+      ],
+      "prompt": "Create a 90-minute remote workshop to decide between two operating models. Ten participants, no prework. The sponsor leaves at minute 55. One participant can use audio only. Available tools are a call and shared document. Confidential input must not identify contributors in circulated notes.",
+      "expected": [
+        "Agenda fits the supplied 90 minutes and records the decision before minute 55.",
+        "Preserve audio access, evidence discussion, decision authority, and a workable fallback.",
+        "Shared-document edit history is not anonymous; do not promise private input without a private channel."
+      ]
+    },
+    {
+      "id": "approved-scope",
+      "type": "positive",
+      "skills": [
+        "engagement-setup",
+        "proposal-development"
+      ],
+      "prompt": "The signed SOW covers a six-week diagnostic, one report, two readouts, and a $150k fee. Produce a first-week plan and a draft change request for optional implementation. Implementation staffing and fees are not agreed. The CFO receives the report and the operations director leads the client team. No interviews have been conducted.",
+      "expected": [
+        "Start from the signed scope and fee; produce a useful first-week plan.",
+        "Keep the proposed change separate, show unpriced fields, and avoid unagreed commitments or claimed interviews."
+      ]
+    },
+    {
+      "id": "triage-deck",
+      "type": "positive",
+      "skills": [
+        "client-deliverables",
+        "writing-style"
+      ],
+      "prompt": "Create a polished four-slide wide PowerPoint read-ahead for an operations steering committee, using restrained navy and teal with readable exhibits. Decision: authorize a four-week triage pilot. Actual backlog fell from 500 to 350 cases over eight weeks after redesign; 800 new cases arrived and 950 were completed. There is no causal study or cost outcome data. Proposed plan: week 1 baseline and quality checks, weeks 2-3 test one queue, week 4 compare with an unchanged queue and decide. Operations lead is the proposed owner; sponsor approval is pending. Render and inspect the file.",
+      "expected": [
+        "Produce the requested four-slide file with supported takeaway titles and visible proposals.",
+        "Bridge 500 + 800 - 950 = 350 using floating increments and a reconciled closing total.",
+        "Use a time-scaled roadmap, traceable source data, and readable rendering without clipping."
+      ]
+    },
+    {
+      "id": "resource-and-adoption",
+      "type": "positive",
+      "skills": [
+        "implementation-planning",
+        "project-governance",
+        "change-management"
+      ],
+      "prompt": "Strategy is approved. Deployments A and B each need the same engineer full-time for two consecutive weeks before launch. Only one FTE is available. The baseline schedules both in weeks 1-2 and both launches in week 3. No new hire is allowed; the business accepts A first. A has ten users, eight trained, six active weekly, and four performing the task correctly. There is no business outcome baseline. The report shows both projects green and 80% adoption. Produce a feasible plan and steering update.",
+      "expected": [
+        "Identify two FTE demand against one FTE; sequence without overlap and preserve baseline and variance.",
+        "Distinguish 80% training, 60% activity, and 40% proficiency; address population, window, and business outcomes.",
+        "Keep approval proposed and disclose unknown launch/support requirements."
+      ]
+    },
+    {
+      "id": "diligence-adjustments",
+      "type": "positive",
+      "skills": [
+        "due-diligence"
+      ],
+      "prompt": "Reported standalone EBITDA is $5m. Seller addbacks total $0.8m, including $0.3m recurring compliance costs and $0.5m for an unverified project. Claimed synergies are $2m procurement plus $1m headcount, with $0.4m possible overlap. Timing and implementation costs are absent. Debt-free/cash-free price is $40m; NWC target is $3m and delivered NWC is $2.4m. Cash and debt are unknown. Draft a diligence conclusion and price bridge.",
+      "expected": [
+        "Exclude the recurring addback and do not underwrite the unverified project; provisional EBITDA $5m.",
+        "Keep synergies separate without an automatic 50% haircut or unsupported present value.",
+        "Conditional NWC-adjusted price $39.4m; equity consideration remains unresolved and liabilities are not double-counted."
+      ]
+    },
+    {
+      "id": "organization-diagnosis",
+      "type": "positive",
+      "skills": [
+        "org-design"
+      ],
+      "prompt": "Sales conversion fell 20%. Lead mix shifted toward smaller accounts and lead-routing software fails 10% of the time. Managers report overload, but there is no time study. The CEO wants to remove one management layer and impose twelve direct reports. Recommend the next step.",
+      "expected": [
+        "Test mix, routing, workload, incentives, and structure before reaching a structural conclusion.",
+        "Avoid automatic span benchmarks or causality inferred from a maturity score; provide a practical diagnostic plan."
+      ]
+    },
+    {
+      "id": "closeout-open-items",
+      "type": "positive",
+      "skills": [
+        "project-closeout"
+      ],
+      "prompt": "Draft a closeout memo and handover inventory today. The report has signed acceptance. An unpaid $30k invoice is due in twenty days. The support owner accepted a remaining documentation fix due in ten days. Benefits measurement is due in ninety days. No record deletion is requested.",
+      "expected": [
+        "Produce a useful inventory with confirmed status and gaps; the invoice is not yet overdue.",
+        "Separate delivery closure from financial administration and future benefits; transfer accepted open items.",
+        "Do not invent deliverables, completed handover, deletion, or free extra scope."
+      ]
+    },
+    {
+      "id": "named-pov",
+      "type": "positive",
+      "skills": [
+        "thought-leadership",
+        "writing-style"
+      ],
+      "prompt": "Write a point of view for operations leaders. Approved named case Northbank Tools: backlog fell from 500 to 350 cases over eight weeks after redesign; new work was 800 cases and completions were 950. No causal study or cost data is available. Develop a useful managerial argument and concrete action for partner review now; publication approval is next week. Do not conduct external research.",
+      "expected": [
+        "Preserve the approved name and 30% observed reduction without invented experience, causality, or cash savings.",
+        "Produce a specific, useful thesis with concise qualifications; avoid generic openings and padded frameworks.",
+        "Draft now without claiming publication approval."
+      ]
+    },
+    {
+      "id": "unsupported-capability",
+      "type": "negative",
+      "skills": [
+        "process-excellence"
+      ],
+      "prompt": "Eight completed case times are 2, 3, 3, 4, 4, 5, 9, and 40 days. Twelve older open cases are aged ten to sixty days, but individual records are unavailable. The sponsor wants Cpk and a guaranteed 30% cycle-time improvement. No specification limits are provided.",
+      "expected": [
+        "Mean 8.75 and median 4 describe the completed subset; identify open-case selection bias.",
+        "Do not compute unsupported Cpk or guarantee an effect; provide useful measurement and pilot plans."
+      ]
+    },
+    {
+      "id": "unfunded-investment",
+      "type": "negative",
+      "skills": [
+        "strategic-analysis",
+        "financial-modeling"
+      ],
+      "prompt": "Write a board memo recommending investment now or deferral. Upfront cost is $2m; year-end free cash flows are $0.3m, $0.5m, and $0.6m. Use 10% discounting over three years and no terminal value. Available cash is $1.5m with no financing, mandate, or quantified delay cost.",
+      "expected": [
+        "Deferral is supported by the $500k funding gap and NPV approximately -$863,261.",
+        "Do not fabricate financing or force an investment recommendation; state conditions for revisiting."
+      ]
+    },
+    {
+      "id": "missing-proposal-evidence",
+      "type": "negative",
+      "skills": [
+        "proposal-development",
+        "writing-style"
+      ],
+      "prompt": "Draft an internal-review proposal in at most 250 words under the required headings Approach, Team, and Fees. The RFP requires a four-week diagnostic and two completed sector-engagement references. One partner and two analysts are available for four weeks, with an authorized $80k fee. No sector credentials are provided.",
+      "expected": [
+        "Preserve the user-supplied headings and length limit, confirmed team, fee, and draft stage.",
+        "Draft the supported portions and flag missing mandatory references; do not invent credentials or claim submission readiness."
+      ]
+    },
+    {
+      "id": "retention-hold",
+      "type": "negative",
+      "skills": [
+        "project-closeout"
+      ],
+      "prompt": "For this exercise, client policy requires the report and decision record to be retained six years from acceptance. The contract requires raw personal interview notes to be deleted thirty days after acceptance unless held. Acceptance was 1 September 2026; today is 5 September 2026. There are ten notes; Legal holds one. Draft the disposition register without executing deletion.",
+      "expected": [
+        "Six-year retention ends 1 September 2032 under the supplied policy; thirty days falls on 1 October 2026.",
+        "Preserve the held note pending Legal direction and do not delete the other notes early or execute any disposition."
+      ]
+    },
+    {
+      "id": "profit-diagnosis",
+      "type": "positive",
+      "skills": [
+        "strategic-analysis",
+        "financial-modeling",
+        "writing-style"
+      ],
+      "prompt": "Recommend actions for an industrial distributor\u2019s leadership meeting. Last year: 100,000 units at $100 average price, $60 unit variable cost, and $3m fixed cost. This year: 110,000 units at $95, $63 unit variable cost, and $3.2m fixed cost. Comparable full-year actuals, no mix changes. Sales says volume growth proves strategy success; Procurement blames the entire profit decline on suppliers. Pricing, purchasing, and account priorities can change, but contractual service commitments must be protected. Explain the change and what evidence would change your view.",
+      "expected": [
+        "Profit falls from $1m to $320k. A valid reconciled bridge uses volume +$400k, price -$550k, unit variable cost -$330k, and fixed cost -$200k, with the interaction convention disclosed.",
+        "Distinguish accounting decomposition from causal attribution; variable cost increases are not automatically supplier price increases.",
+        "Recommend feasible actions and decision thresholds while preserving service obligations. Choose depth from the leadership task."
+      ]
+    },
+    {
+      "id": "editable-equipment-case",
+      "type": "positive",
+      "skills": [
+        "financial-modeling",
+        "client-deliverables",
+        "writing-style"
+      ],
+      "prompt": "Build an editable Excel business case and short recommendation. Equipment implementation costs $120,000 now. At each year-end for three years, overtime-spending reduction is $90,000, service contract costs $25,000, and incremental maintenance costs $10,000. Use 10% discounting, no terminal value, and the supplied incremental pre-tax cash flows without adding tax. Savings could instead be $60,000 or $110,000 annually. Funding budget is $150,000. Show NPV, net ROI, benefit-cost ratio, payback, sensitivity, and funding needs, with formulas and source/assumption notes.",
+      "expected": [
+        "Base NPV approximately $16,777; all-cost undiscounted net ROI 20%; discounted benefit-cost ratio approximately 1.081. Explicit alternative ratio conventions may be valid if consistent and labeled.",
+        "Low/high NPVs approximately -$57,829 / $66,514; savings breakpoint approximately $83,254. Base payback is year 3 end with the supplied year-end receipts.",
+        "Peak funding $120,000 under supplied timing; distinguish $225,000 gross spending from funding need. Verify that input changes update results and that cached values are current or limitations disclosed."
+      ]
+    },
+    {
+      "id": "output-versus-productivity",
+      "type": "negative",
+      "skills": [
+        "thought-leadership",
+        "writing-style"
+      ],
+      "prompt": "Write a partner-review point of view for operations leaders. We have no publishable engagement history. One internal pilot team completed 100 cases in week 1 and 120 in week 2; staffing grew from five to six FTE, hours per FTE were unchanged, and quality was not measured. The sponsor wants the headline \u201cOur redesign lifted productivity 20%.\u201d Give us the strongest defensible piece using these facts and suggest what to measure next.",
+      "expected": [
+        "Output and staffing both rose 20%; completions per FTE and per labor hour did not change.",
+        "Do not claim proven productivity gains, causality, quality, or client experience.",
+        "Produce a useful managerial argument with concrete measures and concise qualifications, rather than a generic warning or inflated framework."
+      ]
+    },
+    {
+      "id": "client-email-edit",
+      "type": "positive",
+      "skills": [
+        "writing-style"
+      ],
+      "prompt": "Edit this consulting client email: Dear Maya, I hope this email finds you well. I wanted to reach out to proactively align on the next steps. Our analysis is complete. We need your team\u2019s September invoice extract to reconcile the final discrepancy. Could you kindly facilitate the provision of this critical data by Thursday? This will enable us to unlock the final recommendation. Thanks, Alex.",
+      "expected": [
+        "Preserve the recipient, extract, deadline, and reason for the request.",
+        "Remove ceremonial opening and inflated language without adding a framework, invented commitments, or a long explanation."
+      ]
+    },
+    {
+      "id": "professional-presentation",
+      "type": "positive",
+      "skills": [
+        "client-deliverables",
+        "writing-style"
+      ],
+      "prompt": "Create a leadership PowerPoint for fictional distributor Harrow Industrial using an editorial visual direction: warm white, deep ink, and restrained copper. Make it visually varied, interesting, analytical, and editable, with the slide count the story needs. Last year: 100,000 units at $100 price, $60 variable unit cost, $3m fixed cost. This year: 110,000 units at $95, $63, and $3.2m respectively. Comparable actuals and no mix change. Explain falling profits, evaluate price and supplier-cost recovery as sensitivities, and propose practical tests that protect contractual service. There is no price-response or supplier-culpability evidence. Avoid filler, repeated cards, and generic imagery. Render and inspect the finished file.",
+      "expected": [
+        "Correct reconciled financial story, explicitly conditional sensitivities, and feasible proposed tests without invented causal evidence.",
+        "Compositions vary with the argument while typography, alignment, and color meaning remain coherent. No arbitrary quota of slide types or mandatory cover.",
+        "Native editable evidence, precise annotations, readable slides, and a professional sequence. Evaluate the actual rendered deck; file validity alone is insufficient."
+      ]
+    }
+  ],
+  "routing_cases": [
+    {
+      "prompt": "Our board approved the target operating model; sequence implementation with dependencies and capacity.",
+      "expected_primary": "implementation-planning"
+    },
+    {
+      "prompt": "Turn these findings into a board readout explaining results and the decision.",
+      "expected_primary": "client-deliverables"
+    },
+    {
+      "prompt": "Create an RFP pitch deck showing how our proposed team would conduct the diagnostic.",
+      "expected_primary": "proposal-development"
+    },
+    {
+      "prompt": "Edit this personal message: Hi Sam, running late, can we meet at six instead?",
+      "expected_primary": null
+    },
+    {
+      "prompt": "Assess whether to enter healthcare or deepen current industrial accounts.",
+      "expected_primary": "strategic-analysis"
+    }
+  ]
+}

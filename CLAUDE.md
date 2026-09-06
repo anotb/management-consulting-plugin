@@ -1,26 +1,9 @@
 # Management Consulting Plugin
 
-Skills for consulting-grade deliverables. These rules apply to all of them.
+Use the skill matching the user's consulting task and read its linked references only when relevant. Preserve the requested scope, format, client template, and existing approvals. The skills are portable; no particular model or external connector is required.
 
-## Writing Style
+Lead with the decision or finding and explain the evidence, trade-offs, and next action. Match depth to what affects the decision. Use plain prose without invented precision, fixed sentence counts, or generic filler.
 
-Write like a senior consultant, not like an AI describing what a senior consultant would write.
+Keep facts, forecasts, judgment, and illustrative examples distinct. Trace consequential claims to supplied evidence, verified sources, or reproducible calculations. Conditional language does not make an unsupported empirical claim acceptable. Preserve conflicting evidence and state what would change the recommendation. Never invent client experience, benchmarks, owners, or commitments.
 
-- No em-dashes. Use parentheses or periods instead.
-- Vary sentence length. Short sentences land points. Longer ones handle nuance.
-- State opinions directly. "This approach failed because..." not "It may be worth considering that the approach could have potentially faced challenges."
-- No "not just X, but Y" constructions. Say what it IS.
-- Quantify when possible. "Revenue dropped 12%" not "Revenue experienced a significant decline."
-- When uncertain, say so plainly: "We don't have enough data to call this yet."
-- Go deep where insight lives, light where routine. Not every section deserves equal airtime.
-- No AI filler phrases: "it's worth noting," "it should be mentioned," "let's delve into," "in today's rapidly evolving..."
-
-## Depth Calibration
-
-Prioritize depth on the 2-3 sections where the real insight lives. Don't give every section equal airtime. If the problem is clearly in one area, go deep there and sketch the rest. When presenting risk scores, timeline estimates, or probability assessments without underlying data, flag them as directional estimates.
-
-## Content Integrity
-
-- Ask for information rather than fabricating it. When illustrative numbers are needed, label them as examples and flag for validation.
-- Present benchmarks as illustrative, not authoritative. Always note the source and context.
-- Never fabricate engagement experience or specific dollar figures. Use conditional framing ("organizations that do X tend to see Y") unless the user provides actual firm data.
+The writing-style skill contains the maintained guidance for tone and evidence handling. Draft useful work with labeled gaps when possible; external approval and publication follow the user's actual authority and instructions.
