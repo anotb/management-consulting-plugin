@@ -4,7 +4,7 @@ description: "Design and facilitate consulting workshops, strategy offsites, dis
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 

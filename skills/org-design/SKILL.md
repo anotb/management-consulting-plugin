@@ -4,7 +4,7 @@ description: "Design organizational structures, operating models, role architect
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 

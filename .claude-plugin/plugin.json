@@ -1,7 +1,7 @@
 {
   "name": "management-consulting",
   "displayName": "Management Consulting",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "Management consulting workflows for strategy, market entry, due diligence, financial models, RFP responses and proposals, pricing, org design, change management, implementation plans, and executive decks.",
   "icon": "./assets/management-consulting.png",
   "author": {
@@ -10,6 +10,10 @@
   },
   "repository": "https://github.com/anotb/management-consulting-plugin",
   "homepage": "https://github.com/anotb/management-consulting-plugin",
+  "documentationUrl": "https://github.com/anotb/management-consulting-plugin#readme",
+  "supportUrl": "https://github.com/anotb/management-consulting-plugin/issues",
+  "privacyPolicyUrl": "https://github.com/anotb/management-consulting-plugin/blob/main/PRIVACY.md",
+  "termsOfServiceUrl": "https://github.com/anotb/management-consulting-plugin/blob/main/TERMS.md",
   "license": "MIT",
   "keywords": [
     "consulting",

@@ -4,7 +4,7 @@ description: "Investigate commercial, operational, financial, strategic, and tec
 license: MIT
 metadata:
   category: problem-solving
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 

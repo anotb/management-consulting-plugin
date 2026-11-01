@@ -136,7 +136,7 @@ Report problems and ask questions through [GitHub Issues](https://github.com/ano
 
 Start with the decision or artifact you need, include the evidence you have, and state the audience and constraints. The skills produce useful drafts with explicit gaps, distinguish observed results from forecasts, and connect recommendations to evidence and decision thresholds. They preserve client templates and agreed scope. Detailed methods load only when relevant. Output length follows the prompt, audience, and task; the skills impose no fixed word, paragraph, framework, or slide counts. Presentation guidance emphasizes compositions that fit the evidence, a coherent visual direction, and review of both individual slides and the whole deck.
 
-All 16 skill names and installation paths remain stable in 2.3.0. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
+All 16 skill names and installation paths remain stable in 2.3.1. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
 
 ## Build and verify
 
