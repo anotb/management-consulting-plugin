@@ -2,7 +2,7 @@
   "name": "management-consulting",
   "displayName": "Management Consulting",
   "version": "2.3.1",
-  "description": "Management consulting workflows for strategy, market entry, due diligence, financial models, RFP responses and proposals, pricing, org design, change management, implementation plans, and executive decks.",
+  "description": "Structure ambiguous business problems, build financial cases and proposals, plan implementation, conduct due diligence, manage change, and produce executive-ready deliverables.",
   "icon": "./assets/management-consulting.png",
   "author": {
     "name": "Rahil Banthia",
