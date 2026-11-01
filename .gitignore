@@ -2,6 +2,7 @@
 .codex/
 dist/build/
 dist/management-consulting-openai.zip
+dist/management-consulting.skill
 
 # Local review notes and evaluation artifacts
 /reviews/

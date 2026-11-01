@@ -2,7 +2,7 @@
 
 Skills for the consulting engagement lifecycle, from problem structuring through implementation and closeout.
 
-> Packaged for OpenAI's Plugin Directory and the [Agent Skills](https://agentskills.io) open standard. The same source works with ChatGPT, Codex, Claude Code, Cowork, Gemini CLI, and [other compatible agents](https://agentskills.io).
+> Packaged for Anthropic's plugin directory, OpenAI's Plugin Directory, and the [Agent Skills](https://agentskills.io) open standard. The same source works with Claude, Claude Code, Cowork, ChatGPT, Codex, Gemini CLI, and [other compatible agents](https://agentskills.io).
 
 Part of [unsol.dev](https://unsol.dev)
 
@@ -33,6 +33,10 @@ Consulting engagements repeat many of the same mechanics: scoping, stakeholder a
 
 ## Install
 
+### Claude and Cowork
+
+In Claude, go to Customize > Plugins > Discover and search for **Management Consulting**. A plugin added there also loads in Claude Code. If it is not listed, use the Claude Code, Claude Desktop, or Cowork steps below.
+
 ### ChatGPT and Codex
 
 In ChatGPT or Codex, open **Plugins** and search for **Management Consulting**. If it is not listed, use the cross-agent installer below.
@@ -47,7 +51,7 @@ The same install works across Claude Code, Codex, Cursor, Gemini CLI, and [other
 
 ### Claude Desktop
 
-Download [`dist/management-consulting.skill`](https://github.com/anotb/management-consulting-plugin/raw/main/dist/management-consulting.skill), then in Claude go to Customize (left nav) > Skills > `+` > Upload a skill. Requires "Code execution and file creation" enabled in Settings > Capabilities.
+Download [`management-consulting.skill`](https://github.com/anotb/management-consulting-plugin/releases/latest/download/management-consulting.skill) from the latest release, then in Claude go to Customize (left nav) > Skills > `+` > Upload a skill. Requires "Code execution and file creation" enabled in Settings > Capabilities.
 
 This installs as a single `management-consulting` skill that routes by topic via an internal dispatcher. To get individual slash commands per skill (`/strategic-analysis`, `/financial-modeling`, etc.), install directly into the skills directory instead:
 
@@ -107,6 +111,27 @@ You can also invoke a skill directly in Claude Code:
 
 In Claude Code, [plan mode](https://code.claude.com/docs/en/common-workflows#plan-before-coding) (`shift+tab` twice) can surface missing data, client context, and constraints before work begins.
 
+### Example prompts
+
+- "Structure this business problem and identify the analyses needed to reach a decision."
+- "Turn this recommendation into an implementation plan with owners, milestones, and risks."
+- "Build an executive-ready storyline from these findings and recommendations."
+
+## What it runs and sends
+
+The plugin is instruction and reference files plus one optional local helper, `skills/client-deliverables/scripts/consulting-charts.cjs`, for editable PowerPoint exhibits. It has no MCP servers, hooks, or agents, sends no data anywhere, and collects nothing. See [PRIVACY.md](PRIVACY.md) and [TERMS.md](TERMS.md).
+
+## Troubleshooting
+
+- **A skill does not activate:** name the skill or the task directly. In Claude Code, run it as `/management-consulting:strategic-analysis`.
+- **Skills are missing after install:** start a new session. In Claude Code, `/reload-plugins` also works.
+- **No file is created:** file creation uses the host's tools. In Claude, enable "Code execution and file creation" in Settings > Capabilities.
+- **The PowerPoint helper fails:** it needs Node and a PptxGenJS installation supplied by the caller. Other presentation tools can produce the same exhibits.
+
+## Support
+
+Report problems and ask questions through [GitHub Issues](https://github.com/anotb/management-consulting-plugin/issues).
+
 ## Working with the skills
 
 Start with the decision or artifact you need, include the evidence you have, and state the audience and constraints. The skills produce useful drafts with explicit gaps, distinguish observed results from forecasts, and connect recommendations to evidence and decision thresholds. They preserve client templates and agreed scope. Detailed methods load only when relevant. Output length follows the prompt, audience, and task; the skills impose no fixed word, paragraph, framework, or slide counts. Presentation guidance emphasizes compositions that fit the evidence, a coherent visual direction, and review of both individual slides and the whole deck.
@@ -127,7 +152,7 @@ python3 -m unittest discover -s tests -v
 node --test tests/test_consulting_charts.cjs
 ```
 
-The OpenAI archive is written to `dist/management-consulting-openai.zip`. Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
+The OpenAI archive is written to `dist/management-consulting-openai.zip`. The Desktop bundle is written to `dist/management-consulting.skill` and attached to each GitHub release, not committed, because the plugin directory holds binary files in the plugin folder for manual review. Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
 
 ## Heads up
 
