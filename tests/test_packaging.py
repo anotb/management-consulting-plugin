@@ -144,6 +144,8 @@ class OpenAIPackagingTests(unittest.TestCase):
                 versions.append(manifest['version'])
             self.assertEqual(len(set(versions)),1)
             codex=json.loads((bundle/'.codex-plugin/plugin.json').read_text())
+            for field in ('websiteURL','supportURL','privacyPolicyURL','termsOfServiceURL'):
+                self.assertTrue(codex['interface'][field].startswith('https://'),field)
             for field in ('composerIcon','logo'):
                 self.assertTrue((bundle/codex['interface'][field]).is_file())
 

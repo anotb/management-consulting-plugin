@@ -31,6 +31,7 @@
       "Write"
     ],
     "websiteURL": "https://github.com/anotb/management-consulting-plugin",
+    "supportURL": "https://github.com/anotb/management-consulting-plugin/issues",
     "privacyPolicyURL": "https://github.com/anotb/management-consulting-plugin/blob/main/PRIVACY.md",
     "termsOfServiceURL": "https://github.com/anotb/management-consulting-plugin/blob/main/TERMS.md",
     "defaultPrompt": [
