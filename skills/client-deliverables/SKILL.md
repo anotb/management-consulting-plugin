@@ -4,7 +4,7 @@ description: "Create and refine consulting reports, decision memos, and executiv
 license: MIT
 metadata:
   category: communication
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 

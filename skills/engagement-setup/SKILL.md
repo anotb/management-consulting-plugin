@@ -4,7 +4,7 @@ description: "Launch a consulting engagement with a focused kickoff, discovery p
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 

@@ -4,7 +4,7 @@ description: "Turn an agreed recommendation into a feasible roadmap and implemen
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.0"
+  version: "2.3.1"
   author: Anot
 ---
 
