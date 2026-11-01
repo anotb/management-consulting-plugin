@@ -4,7 +4,7 @@ description: "Design and operate consulting engagement governance: decision righ
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

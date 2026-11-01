@@ -1,10 +1,10 @@
 ---
 name: strategic-analysis
-description: "Structure an ambiguous business decision, test competing explanations, and recommend a course using evidence. Use for growth, market entry, competitive positioning, business models, and portfolio choices. For execution of an approved direction, use implementation-planning when available."
+description: "Structure an ambiguous business decision, test competing explanations, and recommend a course using evidence. Use for growth strategy, market entry, market sizing, competitive analysis, SWOT, issue trees, business models, and portfolio choices. For execution of an approved direction, use implementation-planning when available."
 license: MIT
 metadata:
   category: problem-solving
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

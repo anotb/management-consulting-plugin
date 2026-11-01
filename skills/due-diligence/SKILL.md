@@ -1,10 +1,10 @@
 ---
 name: due-diligence
-description: "Investigate commercial, operational, financial, strategic, and technology claims for acquisition, investment, partnership, or vendor decisions. Use for data-room analysis, quality of earnings, customer concentration, working capital, synergies, and diligence recommendations."
+description: "Investigate commercial, operational, financial, strategic, and technology claims for acquisition, investment, partnership, or vendor decisions. Use for M&A targets, data-room analysis, quality of earnings, customer concentration, working capital, synergies, and diligence recommendations."
 license: MIT
 metadata:
   category: problem-solving
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 
