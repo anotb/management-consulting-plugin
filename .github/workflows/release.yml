@@ -1,0 +1,30 @@
+name: Release
+
+# Merging a version bump to main publishes that version's release and bundle.
+on:
+  push:
+    branches: [main]
+    paths: [.claude-plugin/plugin.json]
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read version
+        id: version
+        run: echo "tag=v$(jq -r .version .claude-plugin/plugin.json)" >> "$GITHUB_OUTPUT"
+      - name: Build and publish if this version has no release
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            echo "$TAG already released"
+            exit 0
+          fi
+          bash build.sh
+          gh release create "$TAG" dist/management-consulting.skill --target "$GITHUB_SHA" --title "$TAG" --generate-notes

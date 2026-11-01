@@ -1,8 +1,8 @@
 {
   "name": "management-consulting",
   "displayName": "Management Consulting",
-  "version": "2.2.1",
-  "description": "Analyze RFPs, develop proposals, apply strategic frameworks, and build implementation plans. Create executive deliverables for strategy, operations, and transformation engagements.",
+  "version": "2.3.0",
+  "description": "Management consulting workflows for strategy, market entry, due diligence, financial models, RFP responses and proposals, pricing, org design, change management, implementation plans, and executive decks.",
   "icon": "./assets/management-consulting.png",
   "author": {
     "name": "Rahil Banthia",

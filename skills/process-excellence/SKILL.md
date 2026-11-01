@@ -1,10 +1,10 @@
 ---
 name: process-excellence
-description: "Diagnose and improve business processes using evidence, flow analysis, Lean, and appropriate statistical methods. Use for bottlenecks, cycle time, defects, cost, process mining, DMAIC plans, and control design."
+description: "Diagnose and improve business processes using evidence, flow analysis, Lean, Six Sigma, and appropriate statistical methods. Use for bottlenecks, cycle time, defects, cost, process mining, DMAIC plans, and control design."
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

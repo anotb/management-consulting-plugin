@@ -4,7 +4,7 @@ description: "Build auditable financial models and business cases for investment
 license: MIT
 metadata:
   category: problem-solving
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

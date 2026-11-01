@@ -1,10 +1,10 @@
 ---
 name: client-deliverables
-description: "Create and refine consulting reports, decision memos, and executive presentations, including storylines, exhibits, visual design, and artifact review. Use for board readouts, investment committee memos, steering updates, and final reports. For sales proposals and pitch decks, use proposal-development when available."
+description: "Create and refine consulting reports, decision memos, and executive presentations, including storylines, exhibits, visual design, and artifact review. Use for PowerPoint decks, executive summaries, board readouts, investment committee memos, steering updates, and final reports. For sales proposals and pitch decks, use proposal-development when available."
 license: MIT
 metadata:
   category: communication
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

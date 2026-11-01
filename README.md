@@ -136,7 +136,7 @@ Report problems and ask questions through [GitHub Issues](https://github.com/ano
 
 Start with the decision or artifact you need, include the evidence you have, and state the audience and constraints. The skills produce useful drafts with explicit gaps, distinguish observed results from forecasts, and connect recommendations to evidence and decision thresholds. They preserve client templates and agreed scope. Detailed methods load only when relevant. Output length follows the prompt, audience, and task; the skills impose no fixed word, paragraph, framework, or slide counts. Presentation guidance emphasizes compositions that fit the evidence, a coherent visual direction, and review of both individual slides and the whole deck.
 
-All 16 skill names and installation paths remain stable in 2.2.0. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
+All 16 skill names and installation paths remain stable in 2.3.0. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
 
 ## Build and verify
 
@@ -153,6 +153,10 @@ node --test tests/test_consulting_charts.cjs
 ```
 
 The OpenAI archive is written to `dist/management-consulting-openai.zip`. The Desktop bundle is written to `dist/management-consulting.skill` and attached to each GitHub release, not committed, because the plugin directory holds binary files in the plugin folder for manual review. Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
+
+## Release
+
+Raise `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`, and each skill, then merge to `main`. A test fails if these differ. GitHub Actions then tags the version and publishes a release with the Desktop bundle, and the Claude directory scans the commit. Each new version waits for an Anthropic reviewer after **Publish update** is selected in the [developer portal](https://claude.ai/directory/manage). Confirm that the button targets the newest version, because it can also list older commits.
 
 ## Heads up
 

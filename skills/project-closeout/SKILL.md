@@ -4,7 +4,7 @@ description: "Close or transition a consulting engagement through acceptance, ha
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

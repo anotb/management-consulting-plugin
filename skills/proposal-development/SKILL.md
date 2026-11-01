@@ -4,7 +4,7 @@ description: "Develop consulting pursuits, RFP responses, proposals, statements 
 license: MIT
 metadata:
   category: business-development
-  version: "2.2.0"
+  version: "2.3.0"
   author: Anot
 ---
 

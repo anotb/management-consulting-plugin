@@ -16,13 +16,26 @@ NAMES = {'change-management','client-deliverables','due-diligence','engagement-p
 def links(root):
     failures = []
     for path in root.rglob('*.md'):
-        for target in re.findall(r'\]\(([^)]+)\)', path.read_text()):
+        for target in re.findall(r'\]\(([^)]+)\)', path.read_text(encoding='utf-8')):
             if re.match(r'\w+://|#|mailto:', target):
                 continue
             target = target.split('#')[0]
             if not (path.parent / target).is_file():
                 failures.append(f'{path.relative_to(root)} -> {target}')
     return failures
+
+class VersionTests(unittest.TestCase):
+    def test_all_declared_versions_match(self):
+        import json
+        marketplace = json.loads((ROOT/'.claude-plugin/marketplace.json').read_text(encoding='utf-8'))
+        versions = {
+            json.loads((ROOT/'.claude-plugin/plugin.json').read_text(encoding='utf-8'))['version'],
+            json.loads((ROOT/'.codex-plugin/plugin.json').read_text(encoding='utf-8'))['version'],
+            marketplace['plugins'][0]['version'],
+        }
+        for path in [*(ROOT/'skills').glob('*/SKILL.md'), ROOT/'dist/dispatcher/SKILL.md']:
+            versions.add(re.search(r'^\s*version:\s*"([^"]+)"', path.read_text(encoding='utf-8'), re.M).group(1))
+        self.assertEqual(len(versions), 1, versions)
 
 class PackagingTests(unittest.TestCase):
     def setUp(self):
