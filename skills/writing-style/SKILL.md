@@ -4,7 +4,7 @@ description: "Write and edit consulting analysis, recommendations, reports, deck
 license: MIT
 metadata:
   category: standards
-  version: "2.4.0"
+  version: "2.4.1"
   author: Anot
 ---
 

@@ -1,5 +1,10 @@
 .claude/
 .codex/
+
+# Local agent instructions. Anthropic's directory refuses CLAUDE.md and
+# AGENTS.md in a plugin folder from unverified publishers.
+CLAUDE.md
+AGENTS.md
 dist/build/
 dist/management-consulting-openai.zip
 dist/management-consulting.skill
