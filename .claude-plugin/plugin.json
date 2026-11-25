@@ -1,7 +1,7 @@
 {
   "name": "management-consulting",
   "displayName": "Management Consulting",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Structure ambiguous business problems, build financial cases and proposals, plan implementation, conduct due diligence, manage change, and produce executive-ready deliverables.",
   "icon": "./assets/management-consulting.png",
   "author": {

@@ -1,6 +1,6 @@
 name: Release
 
-# Merging a version bump to main publishes that version's release and bundle.
+# Merging a version bump to main publishes that version's release and bundles.
 on:
   push:
     branches: [main]
@@ -17,14 +17,22 @@ jobs:
       - name: Read version
         id: version
         run: echo "tag=v$(jq -r .version .claude-plugin/plugin.json)" >> "$GITHUB_OUTPUT"
-      - name: Build and publish if this version has no release
+      - name: Check for an existing release
+        id: existing
         env:
           GH_TOKEN: ${{ github.token }}
           TAG: ${{ steps.version.outputs.tag }}
         run: |
           if gh release view "$TAG" >/dev/null 2>&1; then
             echo "$TAG already released"
-            exit 0
+            echo "released=true" >> "$GITHUB_OUTPUT"
           fi
-          bash build.sh
-          gh release create "$TAG" dist/management-consulting.skill --target "$GITHUB_SHA" --title "$TAG" --generate-notes
+      - if: steps.existing.outputs.released != 'true'
+        uses: ./.github/actions/build
+      - if: steps.existing.outputs.released != 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          TAG: ${{ steps.version.outputs.tag }}
+        run: |
+          gh release create "$TAG" dist/management-consulting.skill dist/management-consulting-openai.zip \
+            --target "$GITHUB_SHA" --title "$TAG" --generate-notes

@@ -4,7 +4,7 @@ description: "Diagnose and improve business processes using evidence, flow analy
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 

@@ -119,7 +119,7 @@ In Claude Code, [plan mode](https://code.claude.com/docs/en/common-workflows#pla
 
 ## What it runs and sends
 
-The plugin is instruction and reference files plus one optional local helper, `skills/client-deliverables/scripts/consulting-charts.cjs`, for editable PowerPoint exhibits. It has no MCP servers, hooks, or agents, sends no data anywhere, and collects nothing. See [PRIVACY.md](PRIVACY.md) and [TERMS.md](TERMS.md).
+The plugin is instruction and reference files only. The PowerPoint reference includes an optional waterfall helper that Claude writes to your working folder and runs only when you ask for an editable bridge chart. It has no MCP servers, hooks, or agents, sends no data anywhere, and collects nothing. See [PRIVACY.md](PRIVACY.md) and [TERMS.md](TERMS.md).
 
 ## Troubleshooting
 
@@ -136,27 +136,20 @@ Report problems and ask questions through [GitHub Issues](https://github.com/ano
 
 Start with the decision or artifact you need, include the evidence you have, and state the audience and constraints. The skills produce useful drafts with explicit gaps, distinguish observed results from forecasts, and connect recommendations to evidence and decision thresholds. They preserve client templates and agreed scope. Detailed methods load only when relevant. Output length follows the prompt, audience, and task; the skills impose no fixed word, paragraph, framework, or slide counts. Presentation guidance emphasizes compositions that fit the evidence, a coherent visual direction, and review of both individual slides and the whole deck.
 
-All 16 skill names and installation paths remain stable in 2.3.1. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
+All 16 skill names and installation paths remain stable in 2.4.0. The core guidance uses standard Markdown and has no model, connector, or runtime dependency. File creation uses the host's available tools. The optional editable PowerPoint bridge helper uses a caller-supplied PptxGenJS installation; other presentation tools can implement the same exhibit checks.
 
 ## Build and verify
 
-```bash
-# Claude Desktop: one dispatcher SKILL.md with all topic resources
-bash build.sh
+Anthropic's directory accepts only Markdown, text, JSON, YAML, and images in the plugin folder from unverified publishers, and this repository is the plugin folder. Build and test logic therefore lives in GitHub Actions YAML:
 
-# OpenAI: both manifests, all standalone skills and their resources
-pwsh -NoProfile -File build-openai.ps1
+- `.github/actions/build/action.yml` builds the single-skill Claude Desktop bundle (`dist/management-consulting.skill`) and the OpenAI upload archive (`dist/management-consulting-openai.zip`).
+- `.github/workflows/ci.yml` runs on every pull request. It checks that only accepted file types are present, that every declared version matches, that the bundle and archive resources and links resolve, and that the waterfall helper published in the PowerPoint reference passes its tests. It also runs `claude plugin validate` and uploads both bundles as a workflow artifact.
 
-# Deterministic packaging and exhibit checks (Python standard library; Node 18+)
-python3 -m unittest discover -s tests -v
-node --test tests/test_consulting_charts.cjs
-```
-
-The OpenAI archive is written to `dist/management-consulting-openai.zip`. The Desktop bundle is written to `dist/management-consulting.skill` and attached to each GitHub release, not committed, because the plugin directory holds binary files in the plugin folder for manual review. Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
+Both builds exclude local review notes. Desktop bundles preserve nested resources and inline writing guidance from its maintained source. Run behavioral fixtures in `tests/evals.json` independently; assess decisions, arithmetic, evidence, readability, scope, and artifact usability. Exact wording and framework counts are not quality measures.
 
 ## Release
 
-Raise `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`, and each skill, then merge to `main`. A test fails if these differ. GitHub Actions then tags the version and publishes a release with the Desktop bundle, and the Claude directory scans the commit. Each new version waits for an Anthropic reviewer after **Publish update** is selected in the [developer portal](https://claude.ai/directory/manage). Confirm that the button targets the newest version, because it can also list older commits.
+Raise `version` in `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.codex-plugin/plugin.json`, and each skill, then merge to `main`. CI fails if these differ. GitHub Actions then tags the version and publishes a release with the Desktop bundle and the OpenAI archive, and the Claude directory scans the commit. Each new version waits for an Anthropic reviewer after **Publish update** is selected in the [developer portal](https://claude.ai/directory/manage). Confirm that the button targets the newest version, because it can also list older commits.
 
 ## Heads up
 
