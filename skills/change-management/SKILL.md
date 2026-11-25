@@ -4,7 +4,7 @@ description: "Diagnose adoption barriers and design organizational change, stake
 license: MIT
 metadata:
   category: engagement-delivery
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 

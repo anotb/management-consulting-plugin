@@ -4,7 +4,7 @@ description: "Price consulting engagements and evaluate delivery economics. Use 
 license: MIT
 metadata:
   category: business-development
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 

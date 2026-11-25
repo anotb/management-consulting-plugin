@@ -4,7 +4,7 @@ description: "Structure an ambiguous business decision, test competing explanati
 license: MIT
 metadata:
   category: problem-solving
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 

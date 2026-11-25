@@ -4,7 +4,7 @@ description: "Develop evidence-backed points of view, white papers, case studies
 license: MIT
 metadata:
   category: business-development
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 

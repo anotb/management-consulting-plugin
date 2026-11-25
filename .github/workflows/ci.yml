@@ -1,5 +1,7 @@
 name: CI
 
+# Checks live in this file because Anthropic's directory only accepts Markdown,
+# text, JSON, YAML, and images in a plugin folder from unverified publishers.
 on:
   push:
     branches: [main]
@@ -19,6 +21,179 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
-      - run: python -m unittest discover -s tests -v
-      - run: node --test tests/test_consulting_charts.cjs
+
+      - name: Plugin folder holds only file types the directory accepts
+        run: |
+          bad=$(git ls-files | grep -Ev '\.(md|txt|json|ya?ml|png|jpe?g|gif|webp|ico)$' | grep -Ev '^(LICENSE|\.gitignore)$' || true)
+          shebang=$(git ls-files -z | xargs -0 grep -l '^#!' 2>/dev/null || true)
+          if [ -n "$bad$shebang" ]; then
+            echo "Not accepted in the plugin folder: $bad $shebang"
+            exit 1
+          fi
+
+      - uses: ./.github/actions/build
+
+      - name: Check sources, bundle, and OpenAI archive
+        run: |
+          cat > "$RUNNER_TEMP/check.py" <<'PY'
+          import json, re, sys, tempfile, zipfile
+          from pathlib import Path
+
+          root = Path.cwd()
+          names = {'change-management','client-deliverables','due-diligence','engagement-pricing',
+                   'engagement-setup','financial-modeling','implementation-planning','org-design',
+                   'process-excellence','project-closeout','project-governance','proposal-development',
+                   'strategic-analysis','thought-leadership','workshop-facilitation','writing-style'}
+          failures = []
+
+          def check(ok, message):
+              if not ok:
+                  failures.append(message)
+
+          def links(base):
+              broken = []
+              for path in base.rglob('*.md'):
+                  text = path.read_text(encoding='utf-8')
+                  text = re.sub(r'```.*?```', '', text, flags=re.S)
+                  for target in re.findall(r'\]\(([^)]+)\)', text):
+                      if re.match(r'\w+://|#|mailto:', target):
+                          continue
+                      if not (path.parent / target.split('#')[0]).is_file():
+                          broken.append(f'{path.relative_to(base)} -> {target}')
+              return broken
+
+          lf = lambda data: data.replace(b'\r\n', b'\n')
+
+          # Every declared version matches.
+          versions = {
+              json.loads((root/'.claude-plugin/plugin.json').read_text())['version'],
+              json.loads((root/'.codex-plugin/plugin.json').read_text())['version'],
+              json.loads((root/'.claude-plugin/marketplace.json').read_text())['plugins'][0]['version'],
+          }
+          for path in [*(root/'skills').glob('*/SKILL.md'), root/'dist/dispatcher/SKILL.md']:
+              versions.add(re.search(r'^\s*version:\s*"([^"]+)"', path.read_text(encoding='utf-8'), re.M).group(1))
+          check(len(versions) == 1, f'versions differ: {versions}')
+
+          # Sources.
+          check({p.name for p in (root/'skills').iterdir() if p.is_dir()} == names, 'skill folders changed')
+          check(not links(root/'skills'), f'broken source links: {links(root/"skills")}')
+
+          # Claude Desktop bundle.
+          with tempfile.TemporaryDirectory() as temp:
+              with zipfile.ZipFile(root/'dist/management-consulting.skill') as archive:
+                  archive.extractall(temp)
+              bundle = Path(temp)/'management-consulting'
+              check(not links(bundle), f'broken bundle links: {links(bundle)}')
+              check(len(list(bundle.rglob('SKILL.md'))) == 1, 'bundle must hold exactly one SKILL.md')
+              check({p.stem for p in (bundle/'references').glob('*.md')} == names - {'writing-style'}, 'bundle topic references changed')
+              for name in names:
+                  for folder in ('references', 'assets'):
+                      source = root/'skills'/name/folder
+                      for file in (source.rglob('*') if source.exists() else []):
+                          if file.is_file():
+                              copied = bundle/'references'/name/folder/file.relative_to(source)
+                              check(copied.is_file() and lf(copied.read_bytes()) == lf(file.read_bytes()), f'bundle copy differs: {copied}')
+              style = (root/'skills/writing-style/SKILL.md').read_text(encoding='utf-8').replace('\r\n', '\n').split('---', 2)[2].strip()
+              check(style in (bundle/'SKILL.md').read_text(encoding='utf-8'), 'writing guidance not embedded in the bundle')
+              check(not any(p.name == 'reviews' for p in bundle.rglob('*')), 'review notes leaked into the bundle')
+
+          # OpenAI archive.
+          with tempfile.TemporaryDirectory() as temp:
+              with zipfile.ZipFile(root/'dist/management-consulting-openai.zip') as archive:
+                  check(not any('/reviews/' in n for n in archive.namelist()), 'review notes leaked into the OpenAI archive')
+                  archive.extractall(temp)
+              upload = Path(temp)/'management-consulting'
+              check({p.parent.name for p in upload.glob('skills/*/SKILL.md')} == names, 'OpenAI archive skills changed')
+              check(not links(upload/'skills'), 'broken links in the OpenAI archive')
+              for source in (root/'skills').rglob('*'):
+                  if source.is_file():
+                      copied = upload/'skills'/source.relative_to(root/'skills')
+                      check(copied.is_file() and copied.read_bytes() == source.read_bytes(), f'OpenAI copy differs: {copied}')
+              manifests = [json.loads((upload/kind/'plugin.json').read_text()) for kind in ('.claude-plugin', '.codex-plugin')]
+              check(all(m['name'] == 'management-consulting' for m in manifests), 'manifest names differ')
+              check(len({m['version'] for m in manifests}) == 1, 'manifest versions differ')
+              interface = manifests[1]['interface']
+              for field in ('websiteURL', 'supportURL', 'privacyPolicyURL', 'termsOfServiceURL'):
+                  check(str(interface.get(field, '')).startswith('https://'), f'Codex {field} missing')
+              for field in ('composerIcon', 'logo'):
+                  check((upload/interface[field]).is_file(), f'Codex {field} file missing')
+
+          if failures:
+              print('\n'.join(failures))
+              sys.exit(1)
+          print('All packaging checks passed.')
+          PY
+          python "$RUNNER_TEMP/check.py"
+
+      - name: Test the waterfall helper published in the PowerPoint reference
+        run: |
+          node -e "
+            const fs = require('fs');
+            const doc = fs.readFileSync('skills/client-deliverables/references/pptx-generation.md', 'utf8');
+            const match = doc.match(/<!-- file: consulting-charts\.cjs -->\s*\x60\x60\x60javascript\n([\s\S]*?)\x60\x60\x60/);
+            if (!match) { console.error('Helper code block not found'); process.exit(1); }
+            fs.writeFileSync(process.env.RUNNER_TEMP + '/consulting-charts.cjs', match[1]);
+          "
+          cat > "$RUNNER_TEMP/charts.test.cjs" <<'JS'
+          'use strict';
+          const test = require('node:test');
+          const assert = require('node:assert/strict');
+          const { bridgeSegments, addWaterfallChart } = require('./consulting-charts.cjs');
+          const total = (label, value) => ({ label, value, kind: 'total' });
+          const change = (label, value) => ({ label, value, kind: 'change' });
+
+          test('bridge changes float from cumulative totals', () => {
+            const result = bridgeSegments([total('Open', 100), change('Growth', 30), change('Churn', -10), total('Close', 120)]);
+            assert.deepEqual(result.map(s => [s.start, s.end]), [[0, 100], [100, 130], [130, 120], [0, 120]]);
+          });
+          test('negative opening, crossing zero, subtotal and zero change', () => {
+            const result = bridgeSegments([total('Open', -10), change('Recovery', 30), {label: 'Subtotal', kind: 'subtotal'}, change('Flat', 0), change('Loss', -40), total('Close', -20)]);
+            assert.deepEqual(result.map(s => [s.low, s.high]), [[-10, 0], [-10, 20], [0, 20], [20, 20], [-20, 20], [-20, 0]]);
+          });
+          test('invalid inputs and nonreconciling totals fail', () => {
+            for (const items of [[], [change('Open', 10), total('End', 10)], [total('Open', 1), total('End', 3)], [total('Open', NaN), change('Next', 1)], [total('Open', 0), change('', 1)], [total('Open', 1), change('Next', Infinity)], [total('Open', 1), {label:'Other',kind:'subtotal',value:2}]]) {
+              assert.throws(() => bridgeSegments(items));
+            }
+          });
+          test('floating point reconciliation tolerates arithmetic roundoff', () => {
+            assert.doesNotThrow(() => bridgeSegments([total('Open', 0.1), change('Change', 0.2), total('Close', 0.3)]));
+          });
+          test('shape geometry encodes increases, declines and connectors within the chart box', () => {
+            const shapes = [], texts = [];
+            const slide = { addShape: (type, opts) => shapes.push({type, ...opts}), addText: (text, opts) => texts.push({text, ...opts}) };
+            const pptx = { ShapeType: {line:'line',rect:'rect'} };
+            addWaterfallChart(pptx, slide, {x:1,y:1,w:10,h:5,items:[total('Open',100),change('Growth',30),change('Churn',-10),total('Close',120)]});
+            const bars = shapes.filter(s => s.type === 'rect');
+            assert.equal(bars.length, 4);
+            assert.ok(Math.abs((bars[0].y - bars[1].y) - bars[1].h) < 1e-9);
+            assert.ok(Math.abs(bars[1].y - bars[2].y) < 1e-9);
+            assert.ok(Math.abs(bars[3].y - (bars[2].y + bars[2].h)) < 1e-9);
+            assert.equal(texts[2].text, '+30');
+            assert.equal(texts[4].text, '-10');
+            for (const s of [...shapes,...texts]) {
+              assert.ok(s.x >= 1 && s.y >= 1 && s.x+s.w <= 11+1e-9 && s.y+s.h <= 6+1e-9);
+            }
+          });
+          test('all-zero bridge draws finite zero lines and rejects unusable layouts', () => {
+            const shapes = [];
+            const slide = {addShape: (type, opts) => shapes.push(opts), addText: () => {}};
+            const pptx = {ShapeType:{line:'line',rect:'rect'}};
+            const options = {x:0,y:0,w:3,h:2,items:[total('Open',0),total('Close',0)]};
+            addWaterfallChart(pptx, slide, options);
+            assert.ok(shapes.every(s => [s.x,s.y,s.w,s.h].every(Number.isFinite)));
+            assert.throws(() => addWaterfallChart(pptx, slide, {...options, h:0.5}));
+            assert.throws(() => addWaterfallChart(pptx, slide, {...options, w:0}));
+            assert.throws(() => addWaterfallChart(pptx, slide, {...options, fontSize:100}));
+            assert.doesNotThrow(() => addWaterfallChart(pptx, slide, {...options, w:1.5}));
+          });
+          JS
+          node --test "$RUNNER_TEMP/charts.test.cjs"
+
       - run: npx --yes @anthropic-ai/claude-code@2.1.314 plugin validate .
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: bundles
+          path: |
+            dist/management-consulting.skill
+            dist/management-consulting-openai.zip

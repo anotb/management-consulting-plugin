@@ -4,7 +4,7 @@ description: "Consulting engagement lifecycle in one skill: strategy and framewo
 license: MIT
 metadata:
   category: consulting-lifecycle
-  version: "2.3.1"
+  version: "2.4.0"
   author: Anot
 ---
 
