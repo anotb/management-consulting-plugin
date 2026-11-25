@@ -26,8 +26,9 @@ jobs:
         run: |
           bad=$(git ls-files | grep -Ev '\.(md|txt|json|ya?ml|png|jpe?g|gif|webp|ico)$' | grep -Ev '^(LICENSE|\.gitignore)$' || true)
           shebang=$(git ls-files -z | xargs -0 grep -l '^#!' 2>/dev/null || true)
-          if [ -n "$bad$shebang" ]; then
-            echo "Not accepted in the plugin folder: $bad $shebang"
+          agents=$(git ls-files | grep -Ei '(^|/)(claude(\.local)?|agents)\.md$|(^|/)\.claude/' || true)
+          if [ -n "$bad$shebang$agents" ]; then
+            echo "Not accepted in the plugin folder: $bad $shebang $agents"
             exit 1
           fi
 
